@@ -14,7 +14,7 @@ Above all, Build Circle value clear, well tested code.
 
 1. Familiarise yourself with the code. Feel free to point out any issues or opinions you have about it. No right answers here but hopefully will drive good discussion.
 
-2. Currently the `getCharacters` function is mocked in our tests. The real implementation throws an error. Make this function work by loading and parsing the characters from a JSON document in S3 here https://s3.eu-west-2.amazonaws.com/build-circle/characters.json (bonus points for a decent test for this).
+2. Currently the `getCharacters` function is mocked in our tests. The real implementation throws an error. Make this function work by loading and parsing the characters from a JSON document in S3 here https://s3.eu-west-2.amazonaws.com/build-circle/characters.json (bonus points for a decent test for this). We can test this by finishing the integration test.
 
 3. Edge cases. Only the happy path is covered. Lets think about what could go wrong and write some code to handle it.
 

@@ -1,4 +1,4 @@
-import { battle } from './main'
+import { battle } from './battle'
 import { getCharacters } from './getCharacters'
 
 jest.mock('./getCharacters')
