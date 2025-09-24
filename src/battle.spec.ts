@@ -31,7 +31,7 @@ describe("battle", () => {
     expect(result).toEqual(hero);
   });
 
-  it("should return the villain if the hero has a weakness to them", async () => {
+  it("should return the villain when the hero weakness means the score is effectively below the villain", async () => {
     const weakHero = { ...hero, weakness: villain.name };
     getCharactersMocked.mockReturnValue(
       Promise.resolve({
