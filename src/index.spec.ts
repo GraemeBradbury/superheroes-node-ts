@@ -1,15 +1,25 @@
 import request from "supertest"
 import app from "./index"
-const baseURL = "http://localhost:8080"
+import { Server } from "http";
 
-app.listen(8080, () => {
-  console.log(`[server]: Server is running`);
+let server: Server;
+
+beforeAll((done) => {
+  server = app.listen(8080, () => {
+    done();
+  });
 });
+
+afterAll((done) => {
+  server.close(done);
+});
+
 
 describe("GET /battle", () => {
   it("should return 200", async () => {
-    const response = await request(baseURL).get("/battle?hero=Batman&villain=Joker");
+    const response = await request(app).get("/battle?hero=Batman&villain=Joker");
 
     expect(response.statusCode).toBe(200);
   });
 });
+
