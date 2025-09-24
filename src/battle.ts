@@ -7,7 +7,6 @@ function scoreWhenFighting(h: Character, v: Character): number {
 }
 
 export async function battle(
-  getCharacters: () => Promise<CharactersResponse>,
   heroName: string,
   villainName: string
 ): Promise<Character> {
@@ -27,8 +26,3 @@ export async function battle(
 
   return scoreWhenFighting(hero, villain) >= villain.score ? hero : villain;
 }
-
-export const battleWithGetCharacters = (
-  heroName: string,
-  villainName: string
-): Promise<Character> => battle(getCharacters, heroName, villainName);

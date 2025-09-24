@@ -1,5 +1,5 @@
-import { battle, battleWithGetCharacters } from "./battle";
-import { CharactersResponse, getCharacters } from "./getCharacters";
+import { battle } from "./battle";
+import { getCharacters } from "./getCharacters";
 
 jest.mock("./getCharacters");
 
@@ -26,7 +26,7 @@ describe("battle", () => {
       })
     );
 
-    const result = await battleWithGetCharacters(hero.name, villain.name);
+    const result = await battle(hero.name, villain.name);
 
     expect(result).toEqual(hero);
   });
@@ -39,7 +39,7 @@ describe("battle", () => {
       })
     );
 
-    const result = await battleWithGetCharacters(weakHero.name, villain.name);
+    const result = await battle(weakHero.name, villain.name);
 
     expect(result).toEqual(villain);
   });
