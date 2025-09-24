@@ -43,4 +43,53 @@ describe("battle", () => {
 
     expect(result).toEqual(villain);
   });
+
+  it("should return the villain when they have a higher score", async () => {
+    const strongVillain = { ...villain, score: hero.score + 2 };
+    getCharactersMocked.mockReturnValue(
+      Promise.resolve({
+        items: [hero, strongVillain],
+      })
+    );
+
+    const result = await battle(hero.name, strongVillain.name);
+
+    expect(result).toEqual(strongVillain);
+  });
+
+  it("should return the villain when the hero is not found", async () => {
+    getCharactersMocked.mockReturnValue(
+      Promise.resolve({
+        items: [villain],
+      })
+    );
+
+    const result = await battle("NonExistentHero", villain.name);
+
+    expect(result).toEqual(villain);
+  });
+
+  it("should return the hero when the villain is not found", async () => {
+    getCharactersMocked.mockReturnValue(
+      Promise.resolve({
+        items: [hero],
+      })
+    );
+
+    const result = await battle(hero.name, "NonExistentVillain");
+
+    expect(result).toEqual(hero);
+  });
+
+  it("should return a default hero when neither is found", async () => {
+    getCharactersMocked.mockReturnValue(
+      Promise.resolve({
+        items: [],
+      })
+    );
+
+    const result = await battle("NonExistentHero", "NonExistentVillain");
+
+    expect(result).toEqual({ name: "", score: 0.0, type: "hero" });
+  });
 });
